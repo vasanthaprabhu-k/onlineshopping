@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
+  <div class="container-fluid">
+    <i class="fa-solid fa-truck-fast">&nbsp;</i>
+    <strong class="flipcart">Flipkart</strong>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <div class="row position-relative">
+        <div class="col form-group search-box">
+          <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)"
+            placeholder="search products">
+        </div>
+        <span>
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </span>
+      </div>
+
+      <ng-template [ngIf]="!auth.isAuthendicated">
+        <div class="col login-container">
+          <button class="login" routerLink="login">Login</button>
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="auth.isAuthendicated">
+        <div class="col login-container">
+          <button class="login" (click)="onLogout()">Logout</button>
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="auth.isAuthendicated">
+        <div class="col">
+          <button routerLink="cart" class="btn btn-primary  float-end">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <div class="badge bg-danger">{{totalItem}}</div>
+          </button>
+        </div>
+      </ng-template>
+    </div>
+
+  </div>
+</nav>
